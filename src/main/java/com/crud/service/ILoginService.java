@@ -14,4 +14,6 @@ public interface ILoginService {
 	public Login createLogin (LoginCommand loginCommand);
  
 	public void supprimerLogin (int id);
+		
+	
 }

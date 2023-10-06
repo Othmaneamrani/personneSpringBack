@@ -38,7 +38,4 @@ public class LoginCommand {
         this.passwordCommand = hashedPassword;
     }
 
-    public boolean checkPasswordCommand(String plainTextPassword) {
-        return BCrypt.checkpw(plainTextPassword, this.passwordCommand);
-    }
 }

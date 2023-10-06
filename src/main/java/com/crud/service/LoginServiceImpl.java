@@ -1,5 +1,6 @@
 package com.crud.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,5 +45,12 @@ public class LoginServiceImpl implements ILoginService {
 	public void supprimerLogin(int id ){
 		iLoginRepository.deleteById(id);
 	}
-
+	
+	
+	
+	
+    
 }
+	
+	
+

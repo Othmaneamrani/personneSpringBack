@@ -37,11 +37,11 @@ public class PersonneServiceImpl implements IPersonneService {
 	private IPersonneLightMapper iPersonneLightMapper;
 	
 	
-	@Override
-	public List<PersonneRepresentation> getAllPersonnes() {		
-		return iPersonneMapper.convertListEntityToListRepresentation(iPersonneRepository.findAll());
-	}
-	
+//	@Override
+//	public List<PersonneRepresentation> getAllPersonnes() {		
+//		return iPersonneMapper.convertListEntityToListRepresentation(iPersonneRepository.findAll());
+//	}
+//	
 	@Override
 	public Page<PersonneRepresentation> getAllPersonnes(int page , int size, String columnSort){
 		Sort sort = Sort.by(Sort.Order.asc(columnSort)) ;
@@ -132,12 +132,13 @@ public class PersonneServiceImpl implements IPersonneService {
 		if (personneCommand.getPrenomCommand()!=null) {
 			personne.setPrenom(personneCommand.getPrenomCommand());
 		}
-
+		if(personneCommand.getPrenomCommand()!=null && personneCommand.getNomCommand()!=null) {
 			List<Adresse> list1 = new ArrayList<Adresse>();
 			for(AdresseCommand adresseCommand : personneCommand.getAdressesCommand()) {
 				list1.add(iAdresseService.patchAdresse(adresseCommand));
 			}
 			personne.setAdresses(list1);
+		}
 		return iPersonneRepository.save(personne);
 	}
 

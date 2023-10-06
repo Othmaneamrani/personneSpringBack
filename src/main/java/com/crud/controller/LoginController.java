@@ -1,7 +1,11 @@
 package com.crud.controller;
 
+import java.util.List;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.command.LoginCommand;
 import com.crud.model.Login;
+import com.crud.repository.ILoginRepository;
 import com.crud.representation.LoginRepresentation;
 import com.crud.service.ILoginService;
 
@@ -23,6 +28,9 @@ public class LoginController {
 	
 	@Autowired
 	private ILoginService iLoginService;
+	
+	@Autowired
+	private ILoginRepository iLoginRepository;
 	
 	
 	
@@ -43,4 +51,34 @@ public class LoginController {
 		iLoginService.supprimerLogin(id);
 	}
 	
+	
+	
+	
+//	
+//	 @PostMapping("/signup")
+//	    public Login signUp(@RequestBody LoginCommand loginCommand) {
+//		  List <Login> logins = iLoginRepository.findAll();
+//	    	for(Login login : logins) {
+//	        if (login.getUsername().equals(loginCommand.getUsernameCommand())) 
+//	            return null;
+//	    	}
+//	    	return iLoginService.createLogin(loginCommand);
+//	    }
+//	
+//	 
+	 
+	 
+	 
+//	 
+//	  @GetMapping("/login")
+//	   public boolean checkLogin(@RequestParam LoginCommand loginCommand) {
+//		  List <Login> logins = iLoginRepository.findAll();
+//	    	for(Login login : logins) {
+//	        if (login.getUsername().equals(loginCommand.getUsernameCommand()) && login.getPassword().equals(loginCommand.getPasswordCommand())) 
+//	            return true;
+//	    	}
+//		  return false ;
+//	    }
+//	 
+	 
 }

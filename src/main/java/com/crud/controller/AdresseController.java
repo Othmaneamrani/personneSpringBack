@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.command.AdresseCommand;
-import com.crud.exception.ExceptionPersonnalisee;
 import com.crud.model.Adresse;
 import com.crud.representation.AdresseRepresentation;
 import com.crud.service.IAdresseService;
-import com.crud.exception.ExceptionPersonnalisee;
 
 
 @RestController

@@ -40,7 +40,4 @@ public class Login {
 	        this.password = hashedPassword;
 	    }
 	  
-	   public boolean checkPassword(String plainTextPassword) {
-	        return BCrypt.checkpw(plainTextPassword, this.password);
-	    }
 }

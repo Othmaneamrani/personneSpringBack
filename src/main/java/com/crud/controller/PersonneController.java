@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.command.PersonneCommand;
 import com.crud.command.PersonneLightCommand;
-import com.crud.exception.ExceptionPersonnalisee;
 import com.crud.model.Personne;
 import com.crud.representation.PersonneRepresentation;
 import com.crud.service.IPersonneService;
@@ -28,31 +27,23 @@ public class PersonneController {
 	@Autowired
     private IPersonneService iPersonneService;
 
-    @GetMapping("/list")
-    public List<PersonneRepresentation> getAllPersonnes() {
-        return iPersonneService.getAllPersonnes();
-    }
+//    @GetMapping("/list")
+//    public List<PersonneRepresentation> getAllPersonnes() {
+//        return iPersonneService.getAllPersonnes();
+//    }
 	
 	@GetMapping
 	public Page<PersonneRepresentation> getAllPersonnes(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "10") int size , @RequestParam(defaultValue = "id")   String columnSort){
-		Page<PersonneRepresentation> pageAll = iPersonneService.getAllPersonnes(page,size,columnSort); 
+		return iPersonneService.getAllPersonnes(page,size,columnSort); 
 		
-		if(pageAll == null) {
-            throw new ExceptionPersonnalisee("La liste est vide");
-		}
-		return pageAll;
 	}
 	
 
     
     @GetMapping("/{id}")
     public PersonneRepresentation getPersonneById(@PathVariable int id) {
-    	PersonneRepresentation personneRepresentation = iPersonneService.getPersonneById(id);
+        return  iPersonneService.getPersonneById(id);
     	
-    	 if(personneRepresentation == null) {
-	            throw new ExceptionPersonnalisee("L'id n'existe pas");
-			}
-        return personneRepresentation; 
     }
     
     
