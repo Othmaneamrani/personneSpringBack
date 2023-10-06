@@ -69,7 +69,7 @@ public class LoginController {
 	 
 	 
 	 
-//	 
+	 
 //	  @GetMapping("/login")
 //	   public boolean checkLogin(@RequestParam LoginCommand loginCommand) {
 //		  List <Login> logins = iLoginRepository.findAll();
@@ -79,6 +79,6 @@ public class LoginController {
 //	    	}
 //		  return false ;
 //	    }
-//	 
+	 
 	 
 }
