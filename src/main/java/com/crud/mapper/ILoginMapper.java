@@ -8,14 +8,12 @@ import com.crud.command.LoginCommand;
 import com.crud.model.Login;
 import com.crud.representation.LoginRepresentation;
 
-@Mapper(componentModel="spring")
+@Mapper(componentModel="spring",  uses = IConnexionMapper.class)
 public interface ILoginMapper {
 
 	
 	@Mappings({
-		@Mapping(source="id" , target ="idRepresentation"),
-		@Mapping(source="username" , target ="usernameRepresentation"),
-		@Mapping(source="password" , target ="passwordRepresentation"),
+		@Mapping(source="connexion" , target ="connexionRepresentation"),
 		@Mapping(source="dateDeNaissance" , target ="dateDeNaissanceRepresentation"),
 		@Mapping(source="gmail" , target ="gmailRepresentation")
 	})
@@ -26,8 +24,7 @@ public interface ILoginMapper {
 	
 	@Mappings({
 		@Mapping(source="idCommand" , target ="id"),
-		@Mapping(source="usernameCommand" , target ="username"),
-		@Mapping(source="passwordCommand" , target ="password"),
+		@Mapping(source="connexionCommand" , target ="connexion"),
 		@Mapping(source="dateDeNaissanceCommand" , target ="dateDeNaissance"),
 		@Mapping(source="gmailCommand" , target ="gmail")
 	})

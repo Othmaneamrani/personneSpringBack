@@ -2,7 +2,6 @@ package com.crud.controller;
 
 import java.util.List;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -40,10 +39,10 @@ public class LoginController {
 	}
 
 
-	@PostMapping
-	public Login createLogin(@RequestBody LoginCommand loginCommand) {
-		return iLoginService.createLogin(loginCommand);
-	}
+//	@PostMapping
+//	public Login createLogin(@RequestBody LoginCommand loginCommand) {
+//		return iLoginService.createLogin(loginCommand);
+//	}
 	
 	
 	@DeleteMapping("/supprimer/{id}")
@@ -54,18 +53,18 @@ public class LoginController {
 	
 	
 	
-//	
-//	 @PostMapping("/signup")
-//	    public Login signUp(@RequestBody LoginCommand loginCommand) {
-//		  List <Login> logins = iLoginRepository.findAll();
-//	    	for(Login login : logins) {
-//	        if (login.getUsername().equals(loginCommand.getUsernameCommand())) 
-//	            return null;
-//	    	}
-//	    	return iLoginService.createLogin(loginCommand);
-//	    }
-//	
-//	 
+	
+	 @PostMapping("/signup")
+	    public Login signUp(@RequestBody LoginCommand loginCommand) {
+		  List <Login> logins = iLoginRepository.findAll();
+	    	for(Login login : logins) {
+	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) 
+	            return null;
+	    	}
+	    	return iLoginService.createLogin(loginCommand);
+	    }
+	
+	 
 	 
 	 
 	 

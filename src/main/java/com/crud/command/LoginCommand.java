@@ -2,8 +2,6 @@ package com.crud.command;
 
 import java.sql.Date;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.GeneratedValue;
@@ -23,19 +21,12 @@ public class LoginCommand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCommand;
 	
-	private String usernameCommand ;
-	
-	private String passwordCommand ; 
+	private ConnexionCommand connexionCommand ;
 	
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dateDeNaissanceCommand ;
 	
 	private String gmailCommand ;
-	
-	
-    public void setPasswordCommand(String plainTextPassword) {
-        String hashedPassword = BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
-        this.passwordCommand = hashedPassword;
-    }
 
+	
 }

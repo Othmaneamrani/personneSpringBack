@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.crud.command.LoginCommand;
 import com.crud.mapper.ILoginMapper;
+import com.crud.model.Connexion;
 import com.crud.model.Login;
 import com.crud.repository.ILoginRepository;
 import com.crud.representation.LoginRepresentation;
@@ -38,7 +39,10 @@ public class LoginServiceImpl implements ILoginService {
 	
 	@Override
 	public Login createLogin(LoginCommand loginCommand) {
-		return iLoginRepository.save(iLoginMapper.convertCommandToEntity(loginCommand));
+		Login login =iLoginMapper.convertCommandToEntity(loginCommand);
+		Connexion connexion = login.getConnexion();
+		connexion.setLogin(login);
+		return iLoginRepository.save(login);
 	}
 	
 	@Override
