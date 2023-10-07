@@ -67,17 +67,6 @@ public class LoginController {
 	 
 	 
 	 
-	 
-	 
-//	  @GetMapping("/login")
-//	   public boolean checkLogin(@RequestParam LoginCommand loginCommand) {
-//		  List <Login> logins = iLoginRepository.findAll();
-//	    	for(Login login : logins) {
-//	        if (login.getUsername().equals(loginCommand.getUsernameCommand()) && login.getPassword().equals(loginCommand.getPasswordCommand())) 
-//	            return true;
-//	    	}
-//		  return false ;
-//	    }
-	 
+
 	 
 }

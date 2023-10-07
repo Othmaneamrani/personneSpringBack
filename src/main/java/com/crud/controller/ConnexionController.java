@@ -24,10 +24,16 @@ public class ConnexionController {
 	@Autowired
 	private IConnexionService iConnexionService ;
 	
-//	@PostMapping
-//	public Boolean checkLogin (@RequestParam ConnexionCommand connexionCommand) {
-//	return iConnexionService.checkConnexion(connexionCommand);
-//}
+	@PostMapping("/connexion")
+	public Boolean checkConnexion (@RequestBody ConnexionCommand connexionCommand) {
+	if (connexionCommand.getUsernameCommand().equals(connexionCommand.getUsernameCommand()) &&  connexionCommand.getPasswordCommand().equals(connexionCommand.getPasswordCommand()))
+		return true;
+		
+	return false;
+	}
+	
+	
+	
 	
 	@GetMapping
     public Page<ConnexionRepresentation> getAllConnexion(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int size , @RequestParam(defaultValue = "id") String columnSort){
