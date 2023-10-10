@@ -43,18 +43,24 @@ public class PersonneServiceImpl implements IPersonneService {
 //	}
 //	
 	@Override
-	public Page<PersonneRepresentation> getAllPersonnes(int page , int size, String columnSort){
+	public Page<PersonneRepresentation> getAllPersonnes(int page , int size, String columnSort, String like){
 		Sort sort = Sort.by(Sort.Order.asc(columnSort)) ;
 //		Sort sort = null;
 //		if (columnSort != null && !columnSort.isBlank()) {
 //			 sort = Sort.by(Sort.Order.asc(columnSort));
 //		} else {
 //			 sort = Sort.by(Sort.Order.asc("id"));
-//
 //		}
+  		PageRequest pageable = PageRequest.of(page-1,size, sort);
 		
-		PageRequest pageable = PageRequest.of(page-1,size, sort);
-		Page <Personne> personnePage = iPersonneRepository.findAll(pageable);
+		 Page<Personne> personnePage;
+		    if (like != null && !like.isBlank()) {
+		        personnePage = iPersonneRepository.findByNomContainingIgnoreCase(like, pageable);
+		    } else {
+		        personnePage = iPersonneRepository.findAll(pageable);
+		    }
+		
+//		Page <Personne> personnePage = iPersonneRepository.findAll(pageable);
 		Page<PersonneRepresentation> personneRepresentationPage = personnePage.map(personne-> iPersonneMapper.convertEntityToRepresentation(personne));
 		return personneRepresentationPage;
 	}

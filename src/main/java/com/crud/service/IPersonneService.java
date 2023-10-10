@@ -13,7 +13,7 @@ public interface IPersonneService {
 	
 //    public List<PersonneRepresentation> getAllPersonnes();
 	
-	public Page<PersonneRepresentation> getAllPersonnes(int page, int size, String columnSort);
+	public Page<PersonneRepresentation> getAllPersonnes(int page, int size, String columnSort, String like);
 
 	public PersonneRepresentation getPersonneById(int id);
 
