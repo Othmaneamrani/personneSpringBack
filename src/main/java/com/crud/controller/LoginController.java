@@ -57,14 +57,18 @@ public class LoginController {
 	
 	
 	 @PostMapping("/signup")
-	    public Boolean signUp(@RequestBody LoginCommand loginCommand) {
+	    public String signUp(@RequestBody LoginCommand loginCommand) {
 		  List <Login> logins = iLoginRepository.findAll();
 	    	for(Login login : logins) {
 	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) 
-	            return false;
+	            return "name";
+	        if (login.getGmail().equals(loginCommand.getGmailCommand())) 
+	            return "gmail";
+	        if (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6)
+	            return "mdp";
 	    	}
 	    	iLoginService.createLogin(loginCommand);
-	    	return true;
+	    	return loginCommand.getConnexionCommand().getUsernameCommand();
 	    }
 	
 	 
