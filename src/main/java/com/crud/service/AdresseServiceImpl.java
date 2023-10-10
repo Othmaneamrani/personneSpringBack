@@ -92,11 +92,7 @@ public class AdresseServiceImpl implements IAdresseService {
 	
 	@Override
 	public Adresse patchAdresse(AdresseCommand adresseCommand) {
-//		Optional<Adresse> adresseOptional = iAdresseRepository.findById(adresseCommand.getIdCommand());
-//			if (!adresseOptional.isPresent()) {
-//				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//			}
-//		Adresse adresse = adresseOptional.get();
+
 		Adresse adresse = iAdresseRepository.findById(adresseCommand.getIdCommand()).get();
 		if (adresseCommand.getRueCommand() != null) {
 	        adresse.setRue(adresseCommand.getRueCommand());

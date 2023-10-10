@@ -30,7 +30,6 @@ public class Login {
     @OneToOne(mappedBy = "login", cascade = CascadeType.ALL)
 	private Connexion connexion ;
 	
-	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dateDeNaissance ;
 	
 	private String gmail ;

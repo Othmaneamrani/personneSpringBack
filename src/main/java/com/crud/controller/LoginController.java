@@ -57,13 +57,14 @@ public class LoginController {
 	
 	
 	 @PostMapping("/signup")
-	    public Login signUp(@RequestBody LoginCommand loginCommand) {
+	    public Boolean signUp(@RequestBody LoginCommand loginCommand) {
 		  List <Login> logins = iLoginRepository.findAll();
 	    	for(Login login : logins) {
 	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) 
-	            return null;
+	            return false;
 	    	}
-	    	return iLoginService.createLogin(loginCommand);
+	    	iLoginService.createLogin(loginCommand);
+	    	return true;
 	    }
 	
 	 

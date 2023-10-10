@@ -13,7 +13,6 @@ public class LoginRepresentation{
 		
 	private ConnexionRepresentation connexionRepresentation;
 		
-	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dateDeNaissanceRepresentation ;
 	
 	private String gmailRepresentation ;

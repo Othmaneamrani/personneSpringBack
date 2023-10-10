@@ -23,7 +23,6 @@ public class LoginCommand {
 	
 	private ConnexionCommand connexionCommand ;
 	
-	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dateDeNaissanceCommand ;
 	
 	private String gmailCommand ;
