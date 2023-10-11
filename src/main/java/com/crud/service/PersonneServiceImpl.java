@@ -55,7 +55,7 @@ public class PersonneServiceImpl implements IPersonneService {
 		
 		 Page<Personne> personnePage;
 		    if (like != null && !like.isBlank()) {
-		        personnePage = iPersonneRepository.findByNomContainingIgnoreCase(like, pageable);
+		        personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(like,like, pageable);
 		    } else {
 		        personnePage = iPersonneRepository.findAll(pageable);
 		    }

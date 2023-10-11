@@ -11,6 +11,6 @@ import com.crud.model.Personne;
 @Repository
 public interface IPersonneRepository extends JpaRepository<Personne, Integer> {
 
-	Page<Personne> findByNomContainingIgnoreCase(String lettre, PageRequest pageable);
+    Page<Personne> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(String nom, String prenom, PageRequest pageable);
 	
 }
