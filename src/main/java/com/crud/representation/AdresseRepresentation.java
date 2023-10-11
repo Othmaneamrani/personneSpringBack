@@ -12,7 +12,7 @@ import lombok.Setter;
 
 public class AdresseRepresentation {
 	
-	@JsonIgnore
+
 	private int idRepresentation;
 	
 	private String rueRepresentation;

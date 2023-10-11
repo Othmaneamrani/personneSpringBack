@@ -27,6 +27,7 @@ public interface IPersonneMapper {
 	
 
 	@Mappings({
+		@Mapping(source = "id", target = "idRepresentation"),
 		@Mapping(source = "nom", target = "nomRepresentation"),
 		@Mapping(source = "prenom", target = "prenomRepresentation"),
 		@Mapping(source = "adresses", target = "adressesRepresentation")

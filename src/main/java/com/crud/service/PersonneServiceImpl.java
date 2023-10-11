@@ -84,12 +84,13 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	
 	@Override
-	public Personne createPersonne(PersonneCommand personneCommand) {
+	public String createPersonne(PersonneCommand personneCommand) {
 		Personne personne = iPersonneMapper.convertCommandToEntity(personneCommand);
 		for(Adresse adresse : personne.getAdresses()) {
 			adresse.setPersonne(personne);
 		}
-		return iPersonneRepository.save(personne);
+		iPersonneRepository.save(personne);
+		return "ok";
 	}
 
 	

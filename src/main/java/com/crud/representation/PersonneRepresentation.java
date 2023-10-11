@@ -12,7 +12,9 @@ import lombok.Setter;
 @Setter
 public class PersonneRepresentation {
 	
+	private int idRepresentation;
 
+	
 	private String nomRepresentation;
 	
 	private String prenomRepresentation;

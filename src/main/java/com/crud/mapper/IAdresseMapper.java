@@ -24,6 +24,7 @@ public interface IAdresseMapper {
 	
 	
 	@Mappings({
+		@Mapping(source="id" , target="idRepresentation"),
 		@Mapping(source="rue" , target="rueRepresentation"),
 		@Mapping(source="numeroMaison" , target="numeroMaisonRepresentation")
 	})

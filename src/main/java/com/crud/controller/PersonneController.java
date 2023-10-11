@@ -35,7 +35,7 @@ public class PersonneController {
 //    }
 	
 	@GetMapping
-	public Page<PersonneRepresentation> getAllPersonnes(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "10") int size , @RequestParam(defaultValue = "id")   String columnSort ,@RequestParam(defaultValue = "")  String like){
+	public Page<PersonneRepresentation> getAllPersonnes(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "7") int size , @RequestParam(defaultValue = "id")   String columnSort ,@RequestParam(defaultValue = "")  String like){
 		return iPersonneService.getAllPersonnes(page,size,columnSort, like); 
 		
 	}
@@ -51,8 +51,9 @@ public class PersonneController {
     
     
     @PostMapping
-    public Personne createPersonne(@RequestBody PersonneCommand personneCommand) {
-        return iPersonneService.createPersonne(personneCommand);
+    public String createPersonne(@RequestBody PersonneCommand personneCommand) {
+        iPersonneService.createPersonne(personneCommand);
+        return "ok";
     }
     
     

@@ -17,7 +17,7 @@ public interface IPersonneService {
 
 	public PersonneRepresentation getPersonneById(int id);
 
-	public Personne createPersonne(PersonneCommand personneCommand );
+	public String createPersonne(PersonneCommand personneCommand );
 	
 	public Personne patchPersonne(PersonneCommand personneCommand);
 
