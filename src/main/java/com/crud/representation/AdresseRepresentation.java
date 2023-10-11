@@ -17,6 +17,6 @@ public class AdresseRepresentation {
 	
 	private String rueRepresentation;
 	
-	private int numeroMaisonRepresentation;
+	private String numeroMaisonRepresentation;
 	
 }
