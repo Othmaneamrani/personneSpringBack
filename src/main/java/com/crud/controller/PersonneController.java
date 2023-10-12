@@ -35,7 +35,7 @@ public class PersonneController {
 //    }
 	
 	@GetMapping
-	public Page<PersonneRepresentation> getAllPersonnes(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "7") int size , @RequestParam(defaultValue = "id")   String columnSort ,@RequestParam(defaultValue = "")  String like){
+	public Page<PersonneRepresentation> getAllPersonnes(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "5") int size , @RequestParam(defaultValue = "id")   String columnSort ,@RequestParam(defaultValue = "")  String like){
 		return iPersonneService.getAllPersonnes(page,size,columnSort, like); 
 		
 	}
