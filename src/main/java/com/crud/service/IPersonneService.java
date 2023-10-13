@@ -11,7 +11,7 @@ import com.crud.representation.PersonneRepresentation;
 
 public interface IPersonneService {
 	
-//    public List<PersonneRepresentation> getAllPersonnes();
+    public List<PersonneRepresentation> getAllPersonnesAll();
 	
 	public Page<PersonneRepresentation> getAllPersonnes(int page, int size, String columnSort, String like);
 

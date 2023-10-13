@@ -37,11 +37,11 @@ public class PersonneServiceImpl implements IPersonneService {
 	private IPersonneLightMapper iPersonneLightMapper;
 	
 	
-//	@Override
-//	public List<PersonneRepresentation> getAllPersonnes() {		
-//		return iPersonneMapper.convertListEntityToListRepresentation(iPersonneRepository.findAll());
-//	}
-//	
+	@Override
+	public List<PersonneRepresentation> getAllPersonnesAll() {		
+		return iPersonneMapper.convertListEntityToListRepresentation(iPersonneRepository.findAll());
+	}
+	
 	@Override
 	public Page<PersonneRepresentation> getAllPersonnes(int page , int size, String columnSort, String like){
 		Sort sort = Sort.by(Sort.Order.asc(columnSort)) ;

@@ -29,10 +29,10 @@ public class PersonneController {
 	@Autowired
     private IPersonneService iPersonneService;
 
-//    @GetMapping("/list")
-//    public List<PersonneRepresentation> getAllPersonnes() {
-//        return iPersonneService.getAllPersonnes();
-//    }
+    @GetMapping("/list")
+    public List<PersonneRepresentation> getAllPersonnes() {
+        return iPersonneService.getAllPersonnesAll();
+    }
 	
 	@GetMapping
 	public Page<PersonneRepresentation> getAllPersonnes(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "5") int size , @RequestParam(defaultValue = "id")   String columnSort ,@RequestParam(defaultValue = "")  String like){
