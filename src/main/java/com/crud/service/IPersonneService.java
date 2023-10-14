@@ -23,7 +23,7 @@ public interface IPersonneService {
 
 	public Personne updateLightPersonne(PersonneLightCommand personneLightCommand);
 	
-	public String updatePersonne(PersonneCommand personneCommand);
+	public Personne updatePersonne(PersonneCommand personneCommand);
 
 	public void deletePersonne(int id);
 

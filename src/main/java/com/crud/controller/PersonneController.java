@@ -66,9 +66,8 @@ public class PersonneController {
     
     
     @PutMapping("/modifier")
-    public String updatePersonne(@RequestBody PersonneCommand personneCommand) {
-        iPersonneService.createPersonne(personneCommand);
-        return "ok";
+    public Personne updatePersonne(@RequestBody PersonneCommand personneCommand) {
+        return  iPersonneService.updatePersonne(personneCommand);
         }
     
     
