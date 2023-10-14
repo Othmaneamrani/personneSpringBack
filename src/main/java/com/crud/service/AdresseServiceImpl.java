@@ -73,6 +73,8 @@ public class AdresseServiceImpl implements IAdresseService {
 	@Override
 	public Adresse updateAdresse(AdresseCommand adresseCommand) {
 		Adresse adresse = iAdresseMapper.convertCommandToEntity(adresseCommand);
+		Adresse adresseKey = iAdresseRepository.findById(adresseCommand.getIdCommand()).get();
+		adresse.setPersonne(adresseKey.getPersonne());
 		return iAdresseRepository.save(adresse);
 	}
 	
