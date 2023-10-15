@@ -55,10 +55,15 @@ public class PersonneServiceImpl implements IPersonneService {
 		
 		 Page<Personne> personnePage;
 		    if (like != null && !like.isBlank()) {
-		        personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(like,like, pageable);
-		    } else {
-		        personnePage = iPersonneRepository.findAll(pageable);
-		    }
+		    	 try {
+		    		 int id = Integer.parseInt(like);
+		             personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseOrId(like, like, id, pageable);
+		         } catch (NumberFormatException e) {
+		             personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(like, like, pageable);
+		         }
+		     } else {
+		         personnePage = iPersonneRepository.findAll(pageable);
+		     }
 		
 //		Page <Personne> personnePage = iPersonneRepository.findAll(pageable);
 		Page<PersonneRepresentation> personneRepresentationPage = personnePage.map(personne-> iPersonneMapper.convertEntityToRepresentation(personne));
