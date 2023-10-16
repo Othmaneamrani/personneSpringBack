@@ -20,5 +20,8 @@ public class PersonneRepresentation {
 	private String prenomRepresentation;
 	
 	private List <AdresseRepresentation> adressesRepresentation;
-
+    
+    private Boolean listRepresentation = false ;
+    
+    private Boolean epingleRepresentation = false ;
 }

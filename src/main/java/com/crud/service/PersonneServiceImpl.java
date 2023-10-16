@@ -157,4 +157,60 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	
 	
+	
+	@Override
+	public Personne ajouterList(int id) {
+		Personne personne = iPersonneRepository.findById(id).get();
+		personne.setList(true);
+		return iPersonneRepository.save(personne);
+		}
+
+	
+	
+	
+	
+	@Override
+	public Personne retirerList(int id) {
+		Personne personne = iPersonneRepository.findById(id).get();
+		personne.setList(false);
+		if(personne.getEpingle()== true) {
+			personne.setEpingle(false);
+		}
+		return iPersonneRepository.save(personne);
+		}
+
+	
+	
+	
+	
+	@Override
+	public Personne epinglePersonne(int id) {
+		Personne personne = iPersonneRepository.findById(id).get();
+		personne.setEpingle(true);
+		return iPersonneRepository.save(personne);
+		}
+
+	
+	
+	
+	
+	@Override
+	public Personne desepinglePersonne(int id) {
+		Personne personne = iPersonneRepository.findById(id).get();
+		personne.setEpingle(false);
+		return iPersonneRepository.save(personne);
+		}
+
+	
+	
+	
+	@Override
+	public List<Personne> getList() {
+		List<Personne> personnes = iPersonneRepository.getPeopleWithListTrueAndPinnedFirst() ;
+		return personnes;
+	}
+
+	
+	
+	
 }

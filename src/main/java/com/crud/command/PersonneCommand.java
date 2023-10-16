@@ -18,4 +18,8 @@ public class PersonneCommand {
 	private String prenomCommand;
 	
 	private List <AdresseCommand> adressesCommand;
+    
+    private Boolean listCommand = false ;
+    
+    private Boolean epingleCommand = false ;
 }

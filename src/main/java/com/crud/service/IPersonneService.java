@@ -26,5 +26,15 @@ public interface IPersonneService {
 	public Personne updatePersonne(PersonneCommand personneCommand);
 
 	public void deletePersonne(int id);
+	
+	public Personne ajouterList (int id) ;
+	
+	public Personne retirerList (int id) ; 
+	
+	public Personne epinglePersonne (int id) ;
+	
+	public Personne desepinglePersonne (int id) ;
+	
+	public List<Personne> getList() ;
 
 }

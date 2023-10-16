@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,8 @@ public class Personne {
     @OneToMany(mappedBy = "personne", cascade = CascadeType.ALL)
 	private List<Adresse> adresses;
     
-    @OneToMany(mappedBy = "personne" , cascade = CascadeType.ALL)
-    private Liste liste;
+    private Boolean list = false ;
+    
+    private Boolean epingle = false ;
+    
 }

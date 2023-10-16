@@ -17,6 +17,8 @@ public interface IPersonneMapper {
 		@Mapping(source = "idCommand", target = "id"),
 		@Mapping(source = "nomCommand", target = "nom"),
 		@Mapping(source = "prenomCommand", target = "prenom"),
+		@Mapping(source = "listCommand", target = "list"),
+		@Mapping(source = "epingleCommand", target = "epingle"),
 		@Mapping(source = "adressesCommand", target = "adresses")
 
 	})
@@ -30,6 +32,8 @@ public interface IPersonneMapper {
 		@Mapping(source = "id", target = "idRepresentation"),
 		@Mapping(source = "nom", target = "nomRepresentation"),
 		@Mapping(source = "prenom", target = "prenomRepresentation"),
+		@Mapping(source = "list", target = "listRepresentation"),
+		@Mapping(source = "epingle", target = "epingleRepresentation"),
 		@Mapping(source = "adresses", target = "adressesRepresentation")
 	})
 	PersonneRepresentation convertEntityToRepresentation(Personne personne);

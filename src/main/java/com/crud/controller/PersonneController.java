@@ -84,5 +84,32 @@ public class PersonneController {
     	iPersonneService.deletePersonne(id);
     }
     
+    @PatchMapping("/add/{id}")
+    public Personne ajouterList (@PathVariable int id) {
+    	return iPersonneService.ajouterList(id);
+    }
+    
+    
+    @PatchMapping("/retirer/{id}")
+    public Personne retirerList (@PathVariable int id) {
+    	return iPersonneService.retirerList(id);
+    }
+    
+    @PatchMapping("/epingle/{id}")
+    public Personne epinglePersonne (@PathVariable int id) {
+    	return iPersonneService.epinglePersonne(id);
+    }
+    
+    
+    @PatchMapping("/desepingle/{id}")
+    public Personne desepinglePersonne (@PathVariable int id) {
+    	return iPersonneService.desepinglePersonne(id);
+    }
+    
+    @GetMapping("/cart")
+    public List<Personne> getList(){
+    	return iPersonneService.getList() ;
+    }
+    
 
 }
