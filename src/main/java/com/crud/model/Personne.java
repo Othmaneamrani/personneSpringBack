@@ -28,4 +28,7 @@ public class Personne {
 	
     @OneToMany(mappedBy = "personne", cascade = CascadeType.ALL)
 	private List<Adresse> adresses;
+    
+    @OneToMany(mappedBy = "personne" , cascade = CascadeType.ALL)
+    private Liste liste;
 }
