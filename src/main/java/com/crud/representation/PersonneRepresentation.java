@@ -21,7 +21,7 @@ public class PersonneRepresentation {
 	
 	private List <AdresseRepresentation> adressesRepresentation;
     
-    private Boolean listRepresentation = false ;
+    private Boolean listRepresentation ;
     
-    private Boolean epingleRepresentation = false ;
+    private Boolean epingleRepresentation ;
 }

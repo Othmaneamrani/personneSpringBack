@@ -30,8 +30,8 @@ public class Personne {
     @OneToMany(mappedBy = "personne", cascade = CascadeType.ALL)
 	private List<Adresse> adresses;
     
-    private Boolean list = false ;
+    private Boolean list ;
     
-    private Boolean epingle = false ;
+    private Boolean epingle ;
     
 }

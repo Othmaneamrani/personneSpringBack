@@ -173,7 +173,7 @@ public class PersonneServiceImpl implements IPersonneService {
 	public Personne retirerList(int id) {
 		Personne personne = iPersonneRepository.findById(id).get();
 		personne.setList(false);
-		if(personne.getEpingle()== true) {
+		if(personne.getEpingle()!= null) {
 			personne.setEpingle(false);
 		}
 		return iPersonneRepository.save(personne);

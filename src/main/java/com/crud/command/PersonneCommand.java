@@ -19,7 +19,7 @@ public class PersonneCommand {
 	
 	private List <AdresseCommand> adressesCommand;
     
-    private Boolean listCommand = false ;
+    private Boolean listCommand ;
     
-    private Boolean epingleCommand = false ;
+    private Boolean epingleCommand ;
 }
