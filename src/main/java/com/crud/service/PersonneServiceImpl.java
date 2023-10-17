@@ -205,9 +205,9 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	
 	@Override
-	public List<Personne> getList() {
-		List<Personne> personnes = iPersonneRepository.getPeopleWithListTrueAndPinnedFirst() ;
-		return personnes;
+	public List<PersonneRepresentation> getList() {
+		List<PersonneRepresentation> personnesRepresentation = iPersonneMapper.convertListEntityToListRepresentation( iPersonneRepository.getPeopleWithListTrueAndPinnedFirst()) ;
+		return personnesRepresentation;
 	}
 
 	

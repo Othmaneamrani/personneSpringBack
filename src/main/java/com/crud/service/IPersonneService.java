@@ -35,6 +35,6 @@ public interface IPersonneService {
 	
 	public Personne desepinglePersonne (int id) ;
 	
-	public List<Personne> getList() ;
+	public List<PersonneRepresentation> getList() ;
 
 }
