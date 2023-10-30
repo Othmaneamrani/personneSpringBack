@@ -10,7 +10,7 @@ import com.crud.command.PersonneCommand;
 import com.crud.model.Personne;
 import com.crud.representation.PersonneRepresentation;
 
-@Mapper(componentModel = "spring", uses = IAdresseMapper.class)
+@Mapper(componentModel = "spring", uses = {IAdresseMapper.class , IConnexionMapper.class})
 public interface IPersonneMapper {
 
 	@Mappings({ 

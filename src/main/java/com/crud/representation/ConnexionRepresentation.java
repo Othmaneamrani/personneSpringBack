@@ -1,5 +1,8 @@
 package com.crud.representation;
 
+import java.util.List;
+
+import com.crud.model.Personne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -18,6 +21,8 @@ public class ConnexionRepresentation {
 	private String usernameRepresentation ;
 	
 	private String passwordRepresentation ;
+	
+	private List<PersonneRepresentation> personnesRepresentation;
 	
 	
 	

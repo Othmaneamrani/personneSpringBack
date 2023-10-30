@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.crud.command.ConnexionCommand;
 import com.crud.command.PersonneCommand;
 import com.crud.command.PersonneLightCommand;
+import com.crud.model.Connexion;
 import com.crud.model.Personne;
 import com.crud.representation.PersonneRepresentation;
 import com.crud.service.IPersonneService;
@@ -40,6 +42,12 @@ public class PersonneController {
 		
 	}
 	
+	
+	@GetMapping("/con")
+	public Page<PersonneRepresentation> getAllPersonnesConnexion(@RequestParam(defaultValue = "1")int page, @RequestParam  (defaultValue = "5") int size , @RequestParam(defaultValue = "id")   String columnSort ,@RequestParam(defaultValue = "")  String like, @RequestParam int id){
+		return iPersonneService.getAllPersonnesConnexion(page,size,columnSort,like, id); 
+		
+	}
 
     
     @GetMapping("/{id}")

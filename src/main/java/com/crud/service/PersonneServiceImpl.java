@@ -11,12 +11,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.crud.command.AdresseCommand;
+import com.crud.command.ConnexionCommand;
 import com.crud.command.PersonneCommand;
 import com.crud.command.PersonneLightCommand;
+import com.crud.mapper.IConnexionMapper;
 import com.crud.mapper.IPersonneLightMapper;
 import com.crud.mapper.IPersonneMapper;
 import com.crud.model.Adresse;
+import com.crud.model.Connexion;
 import com.crud.model.Personne;
+import com.crud.repository.IConnexionRepository;
 import com.crud.repository.IPersonneRepository;
 import com.crud.representation.PersonneRepresentation;
 
@@ -27,11 +31,17 @@ public class PersonneServiceImpl implements IPersonneService {
 	private IPersonneRepository iPersonneRepository ;
 	
 	@Autowired
+	private IConnexionRepository iConnexionRepository ;
+	
+	@Autowired
 	private IAdresseService iAdresseService ;
 	
 	
 	@Autowired
 	private IPersonneMapper iPersonneMapper;
+	
+	@Autowired
+	private IConnexionMapper iConnexionMapper;
 	
 	@Autowired
 	private IPersonneLightMapper iPersonneLightMapper;
@@ -65,11 +75,10 @@ public class PersonneServiceImpl implements IPersonneService {
 		         personnePage = iPersonneRepository.findAll(pageable);
 		     }
 		
-//		Page <Personne> personnePage = iPersonneRepository.findAll(pageable);
-		Page<PersonneRepresentation> personneRepresentationPage = personnePage.map(personne-> iPersonneMapper.convertEntityToRepresentation(personne));
-		return personneRepresentationPage;
-	}
+		    	Page<PersonneRepresentation> personneRepresentationPage = personnePage.map(personne -> iPersonneMapper.convertEntityToRepresentation(personne)); ; 
 
+		    return personneRepresentationPage ;
+		}
 
 	
 	
@@ -212,5 +221,29 @@ public class PersonneServiceImpl implements IPersonneService {
 
 	
 	
+	
+	@Override
+	public Page<PersonneRepresentation> getAllPersonnesConnexion(int page, int size, String columnSort, String like, int id) {
+	    Sort sort = Sort.by(Sort.Order.asc(columnSort));
+	    PageRequest pageable = PageRequest.of(page - 1, size, sort);
+
+	    Page<Personne> personnePage;
+	    if (like != null && !like.isBlank()) {
+	        try {
+	            int likeId = Integer.parseInt(like);
+	            personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseOrIdAndConnexionId(like, like, likeId, id, pageable);
+	        } catch (NumberFormatException e) {
+	            personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseAndConnexionId(like, like, id, pageable);
+	        }
+	    } else {
+	        personnePage = iPersonneRepository.findAllByConnexionId(id, pageable);
+	    }
+
+	    Page<PersonneRepresentation> personneRepresentationPage = personnePage.map(personne -> iPersonneMapper.convertEntityToRepresentation(personne));
+
+	    return personneRepresentationPage;
+	}
+
+
 	
 }

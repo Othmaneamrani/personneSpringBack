@@ -35,13 +35,13 @@ public class ConnexionController {
 	
 	
 	@PostMapping("/connexion")
-	public String checkConnexion (@RequestBody ConnexionCommand connexionCommand) {
+	public Connexion checkConnexion (@RequestBody ConnexionCommand connexionCommand) {
 		 List <Connexion> connexions = iConnexionRepository.findAll();
 	    	for(Connexion connexion : connexions) {
 	        if (connexion.getUsername().equals(connexionCommand.getUsernameCommand()) &&   BCrypt.checkpw(connexionCommand.getPasswordCommand(), connexion.getPassword()) )  
-	            return connexionCommand.getUsernameCommand();
+	            return connexion;
 	    	}
-	    	return "false";
+	    return null;
 	}
 	
 	

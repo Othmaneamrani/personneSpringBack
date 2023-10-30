@@ -26,13 +26,13 @@ public class ConnexionServiceImpl implements IConnexionService {
 	
 	
 	@Override
-	public Boolean checkConnexion(ConnexionCommand connexionCommand) {
+	public Connexion checkConnexion(ConnexionCommand connexionCommand) {
 		List <Connexion> connexions = iConnexionRepository.findAll();
     	for(Connexion connexion : connexions) {
         if (connexion.getUsername().equals(connexionCommand.getUsernameCommand()) && connexion.getPassword().equals(connexionCommand.getPasswordCommand())) 
-            return true;
+            return connexion;
     	}
-		return false;
+    	return null;
 	}
 
 

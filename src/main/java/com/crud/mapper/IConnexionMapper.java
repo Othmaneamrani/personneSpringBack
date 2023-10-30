@@ -8,14 +8,15 @@ import com.crud.command.ConnexionCommand;
 import com.crud.model.Connexion;
 import com.crud.representation.ConnexionRepresentation;
 
-@Mapper(componentModel="spring",  uses = ILoginMapper.class)
+@Mapper(componentModel="spring",  uses = IPersonneMapper.class)
 public interface IConnexionMapper {
 	
 	
 	@Mappings({
 		@Mapping(source="idCommand" , target ="id"),
 		@Mapping(source="usernameCommand" , target ="username"),
-		@Mapping(source="passwordCommand" , target ="password")
+		@Mapping(source="passwordCommand" , target ="password"),
+		@Mapping(source="personnesCommand" , target ="personnes")
 	})
 	Connexion convertCommandToEntity (ConnexionCommand connexionCommand);
 	
@@ -27,7 +28,8 @@ public interface IConnexionMapper {
 	@Mappings({
 		@Mapping(source="id" , target ="idRepresentation"),
 		@Mapping(source="username" , target ="usernameRepresentation"),
-		@Mapping(source="password" , target ="passwordRepresentation")
+		@Mapping(source="password" , target ="passwordRepresentation"),
+		@Mapping(source="personnes" , target ="personnesRepresentation")
 	})
 	ConnexionRepresentation convertEntityToRepresentation (Connexion connexion);
 	

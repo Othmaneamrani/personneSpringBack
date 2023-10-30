@@ -7,5 +7,4 @@ import com.crud.model.Connexion;
 
 @Repository
 public interface IConnexionRepository  extends JpaRepository<Connexion, Integer> {
-
 }

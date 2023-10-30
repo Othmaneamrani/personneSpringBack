@@ -9,7 +9,7 @@ import com.crud.representation.ConnexionRepresentation;
 public interface IConnexionService {
 
 	
-	public Boolean checkConnexion (ConnexionCommand connexionCommand);
+	public Connexion checkConnexion (ConnexionCommand connexionCommand);
 	
  	public Page<ConnexionRepresentation> getAllConnexions(int page,int size, String columnSort);
 
