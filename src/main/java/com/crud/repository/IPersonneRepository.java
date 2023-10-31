@@ -18,7 +18,8 @@ public interface IPersonneRepository extends JpaRepository<Personne, Integer> {
     Page<Personne> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(String nom, String prenom, PageRequest pageable) ;
     @Query("SELECT p FROM personne p WHERE p.list = true ORDER BY p.epingle DESC")
     List<Personne> getPeopleWithListTrueAndPinnedFirst();
+    List<Personne> findAllByConnexionId( int id);
     Page<Personne> findAllByConnexionId( int id, PageRequest pageable);
     Page<Personne> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseOrIdAndConnexionId(String nom, String prenom,int likeId, int id ,PageRequest pageable) ;
-    Page<Personne> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseAndConnexionId(String nom, String prenom,int id, PageRequest pageable) ;
+    Page<Personne> findByConnexionIdAndNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(int connexionId, String nom ,String prenom ,PageRequest pageable);
 }

@@ -13,7 +13,7 @@ import com.crud.representation.PersonneRepresentation;
 
 public interface IPersonneService {
 	
-    public List<PersonneRepresentation> getAllPersonnesAll();
+    public List<PersonneRepresentation> getAllPersonnesAll(int id);
 	
 	public Page<PersonneRepresentation> getAllPersonnes(int page, int size, String columnSort, String like );
 

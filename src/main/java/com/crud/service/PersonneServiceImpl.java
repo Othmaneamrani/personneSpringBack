@@ -48,8 +48,8 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	
 	@Override
-	public List<PersonneRepresentation> getAllPersonnesAll() {		
-		return iPersonneMapper.convertListEntityToListRepresentation(iPersonneRepository.findAll());
+	public List<PersonneRepresentation> getAllPersonnesAll(int id) {		
+		return iPersonneMapper.convertListEntityToListRepresentation(iPersonneRepository.findAllByConnexionId(id));
 	}
 	
 	@Override
@@ -99,10 +99,14 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	@Override
 	public String createPersonne(PersonneCommand personneCommand) {
+		if(personneCommand.getConnexion().getId() != 0) {
+			personneCommand.setConnexion(iConnexionRepository.findById(personneCommand.getConnexion().getId()).get());
+		}
 		Personne personne = iPersonneMapper.convertCommandToEntity(personneCommand);
 		for(Adresse adresse : personne.getAdresses()) {
 			adresse.setPersonne(personne);
 		}
+
 		iPersonneRepository.save(personne);
 		return "ok";
 	}
@@ -233,7 +237,7 @@ public class PersonneServiceImpl implements IPersonneService {
 	            int likeId = Integer.parseInt(like);
 	            personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseOrIdAndConnexionId(like, like, likeId, id, pageable);
 	        } catch (NumberFormatException e) {
-	            personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseAndConnexionId(like, like, id, pageable);
+	            personnePage = iPersonneRepository.findByConnexionIdAndNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(id, like, like , pageable);
 	        }
 	    } else {
 	        personnePage = iPersonneRepository.findAllByConnexionId(id, pageable);

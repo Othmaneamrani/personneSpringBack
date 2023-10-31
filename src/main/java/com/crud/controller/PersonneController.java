@@ -32,8 +32,8 @@ public class PersonneController {
     private IPersonneService iPersonneService;
 
     @GetMapping("/list")
-    public List<PersonneRepresentation> getAllPersonnes() {
-        return iPersonneService.getAllPersonnesAll();
+    public List<PersonneRepresentation> getAllPersonnes(@RequestParam int id) {
+        return iPersonneService.getAllPersonnesAll(id);
     }
 	
 	@GetMapping
