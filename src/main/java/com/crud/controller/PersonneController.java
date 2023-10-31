@@ -115,8 +115,8 @@ public class PersonneController {
     }
     
     @GetMapping("/cart")
-    public List<PersonneRepresentation> getList(){
-    	return iPersonneService.getList() ;
+    public List<PersonneRepresentation> getList(@RequestParam int id){
+    	return iPersonneService.getList(id) ;
     }
     
 

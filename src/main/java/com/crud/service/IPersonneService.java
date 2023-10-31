@@ -37,7 +37,7 @@ public interface IPersonneService {
 	
 	public Personne desepinglePersonne (int id) ;
 	
-	public List<PersonneRepresentation> getList() ;
+	public List<PersonneRepresentation> getList(int id) ;
 	
 	public Page<PersonneRepresentation> getAllPersonnesConnexion(int page, int size, String columnSort, String like, int id);
 

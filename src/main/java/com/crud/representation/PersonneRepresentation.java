@@ -20,7 +20,6 @@ public class PersonneRepresentation {
 	
 	private String prenomRepresentation;
 	
-	@JsonIgnore
 	private Connexion connexion ;
 		
 	private List <AdresseRepresentation> adressesRepresentation;

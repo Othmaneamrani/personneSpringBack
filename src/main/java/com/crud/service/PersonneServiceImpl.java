@@ -218,8 +218,8 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	
 	@Override
-	public List<PersonneRepresentation> getList() {
-		List<PersonneRepresentation> personnesRepresentation = iPersonneMapper.convertListEntityToListRepresentation( iPersonneRepository.getPeopleWithListTrueAndPinnedFirst()) ;
+	public List<PersonneRepresentation> getList(int id) {
+		List<PersonneRepresentation> personnesRepresentation = iPersonneMapper.convertListEntityToListRepresentation( iPersonneRepository.getPeopleWithListTrueAndPinnedFirst(id)) ;
 		return personnesRepresentation;
 	}
 
@@ -227,20 +227,20 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	
 	@Override
-	public Page<PersonneRepresentation> getAllPersonnesConnexion(int page, int size, String columnSort, String like, int id) {
+	public Page<PersonneRepresentation> getAllPersonnesConnexion(int page, int size, String columnSort, String like, int connexionId) {
 	    Sort sort = Sort.by(Sort.Order.asc(columnSort));
 	    PageRequest pageable = PageRequest.of(page - 1, size, sort);
 
 	    Page<Personne> personnePage;
 	    if (like != null && !like.isBlank()) {
 	        try {
-	            int likeId = Integer.parseInt(like);
-	            personnePage = iPersonneRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCaseOrIdAndConnexionId(like, like, likeId, id, pageable);
-	        } catch (NumberFormatException e) {
-	            personnePage = iPersonneRepository.findByConnexionIdAndNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(id, like, like , pageable);
+	            int id = Integer.parseInt(like);
+	            personnePage = iPersonneRepository.findByConnexionIdAndNomContainingIgnoreCaseOrConnexionIdAndPrenomContainingIgnoreCaseOrConnexionIdAndId(connexionId, like, connexionId, like, connexionId, id, pageable);
+	            } catch (NumberFormatException e) {
+	            personnePage = iPersonneRepository.findByConnexionIdAndNomContainingIgnoreCaseOrConnexionIdAndPrenomContainingIgnoreCase(connexionId, like, connexionId, like, pageable);
 	        }
 	    } else {
-	        personnePage = iPersonneRepository.findAllByConnexionId(id, pageable);
+	        personnePage = iPersonneRepository.findAllByConnexionId(connexionId, pageable);
 	    }
 
 	    Page<PersonneRepresentation> personneRepresentationPage = personnePage.map(personne -> iPersonneMapper.convertEntityToRepresentation(personne));
