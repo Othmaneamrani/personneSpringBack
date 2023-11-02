@@ -99,10 +99,11 @@ public class PersonneServiceImpl implements IPersonneService {
 	
 	@Override
 	public String createPersonne(PersonneCommand personneCommand) {
-		if(personneCommand.getConnexion().getId() != 0) {
-			personneCommand.setConnexion(iConnexionRepository.findById(personneCommand.getConnexion().getId()).get());
-		}
 		Personne personne = iPersonneMapper.convertCommandToEntity(personneCommand);
+		
+		if(personneCommand.getConnexionCommand().getIdCommand() != 0) {
+			personne.setConnexion(iConnexionRepository.findById(personneCommand.getConnexionCommand().getIdCommand()).get());
+		}
 		for(Adresse adresse : personne.getAdresses()) {
 			adresse.setPersonne(personne);
 		}
@@ -137,6 +138,9 @@ public class PersonneServiceImpl implements IPersonneService {
 	@Override
 	public Personne updatePersonne(PersonneCommand personneCommand) {
 		Personne personne = iPersonneMapper.convertCommandToEntity(personneCommand);    
+		if(personneCommand.getConnexionCommand().getIdCommand() != 0) {
+			personne.setConnexion(iConnexionRepository.findById(personneCommand.getConnexionCommand().getIdCommand()).get());
+		}
 		for(Adresse adresse : personne.getAdresses()) {
 			adresse.setPersonne(personne);
 		}

@@ -20,7 +20,7 @@ public class PersonneRepresentation {
 	
 	private String prenomRepresentation;
 	
-	private Connexion connexion ;
+	private ConnexionRepresentation connexionRepresentation ;
 		
 	private List <AdresseRepresentation> adressesRepresentation;
     

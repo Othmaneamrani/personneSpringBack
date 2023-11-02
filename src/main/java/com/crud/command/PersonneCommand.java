@@ -19,7 +19,7 @@ public class PersonneCommand {
 	
 	private String prenomCommand;
 	
-	private Connexion connexion ;
+	private ConnexionCommand connexionCommand ;
 	
 	private List <AdresseCommand> adressesCommand;
     
