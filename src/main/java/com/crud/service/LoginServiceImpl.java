@@ -23,13 +23,11 @@ import com.crud.representation.LoginRepresentation;
 public class LoginServiceImpl implements ILoginService {
 	
 	@Autowired
-	IPersonneRepository iPersonneRepository ;
-	
+	private IPersonneRepository iPersonneRepository ;
 	
 	@Autowired
-	IPersonneService iPersonneService ;
-	
-	
+	private IPersonneService iPersonneService ;
+
 	@Autowired
 	private ILoginRepository iLoginRepository;
 	
@@ -50,7 +48,7 @@ public class LoginServiceImpl implements ILoginService {
 	
 	@Override
 	public Login createLogin(LoginCommand loginCommand) {
-		Login login =iLoginMapper.convertCommandToEntity(loginCommand);
+		Login login = iLoginMapper.convertCommandToEntity(loginCommand);
 		Connexion connexion = login.getConnexion();
 		connexion.setLogin(login);
 		iLoginRepository.save(login);
@@ -65,6 +63,32 @@ public class LoginServiceImpl implements ILoginService {
 			iPersonneService.deletePersonne(personne.getId());
 		}
 		iLoginRepository.deleteById(id);
+	}
+
+
+
+	@Override
+	public Login signUp(LoginCommand loginCommand) {
+		  List <Login> logins = iLoginRepository.findAll();
+	    	for(Login login : logins) {
+	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) {
+	        	login.setGmail("username");
+	            return login;
+	        }
+	        if (login.getGmail().equals(loginCommand.getGmailCommand())) {
+	        	login.setGmail("gmail");
+	            return login;
+	        }
+	        if (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6) {
+	        	login.setGmail("mdp");
+	        	return login;
+	        }
+	    	}
+	    	Login login =  iLoginMapper.convertCommandToEntity(loginCommand);
+			Connexion connexion = login.getConnexion();
+			connexion.setLogin(login);
+			iLoginRepository.save(login);
+		return login;
 	}
 	
 	

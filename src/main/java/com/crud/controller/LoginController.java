@@ -1,10 +1,8 @@
 package com.crud.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.crud.command.LoginCommand;
 import com.crud.model.Login;
-import com.crud.repository.ILoginRepository;
 import com.crud.representation.LoginRepresentation;
 import com.crud.service.ILoginService;
 
@@ -29,9 +25,7 @@ public class LoginController {
 	
 	@Autowired
 	private ILoginService iLoginService;
-	
-	@Autowired
-	private ILoginRepository iLoginRepository;
+
 	
 	
 	
@@ -58,23 +52,7 @@ public class LoginController {
 	
 	 @PostMapping("/signup")
 	    public Login signUp(@RequestBody LoginCommand loginCommand) {
-		  List <Login> logins = iLoginRepository.findAll();
-	    	for(Login login : logins) {
-	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) {
-	        	login.setGmail("username");
-	            return login;
-	        }
-	        if (login.getGmail().equals(loginCommand.getGmailCommand())) {
-	        	login.setGmail("gmail");
-	            return login;
-	        }
-	        if (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6) {
-	        	login.setGmail("mdp");
-	        	return login;
-	        }
-	    	}
-	    	Login login = iLoginService.createLogin(loginCommand);
-	    	return login;
+		 return iLoginService.signUp(loginCommand);
 	    }
 	
 	 
