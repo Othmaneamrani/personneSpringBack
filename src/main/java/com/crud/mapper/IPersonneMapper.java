@@ -18,6 +18,7 @@ public interface IPersonneMapper {
 		@Mapping(source = "nomCommand", target = "nom"),
 		@Mapping(source = "prenomCommand", target = "prenom"),
 		@Mapping(source = "listCommand", target = "list"),
+		@Mapping(source = "connexionCommand", target = "connexion"),
 		@Mapping(source = "epingleCommand", target = "epingle"),
 		@Mapping(source = "adressesCommand", target = "adresses")
 
@@ -33,6 +34,7 @@ public interface IPersonneMapper {
 		@Mapping(source = "nom", target = "nomRepresentation"),
 		@Mapping(source = "prenom", target = "prenomRepresentation"),
 		@Mapping(source = "list", target = "listRepresentation"),
+		@Mapping(source = "connexion", target = "connexionRepresentation"),
 		@Mapping(source = "epingle", target = "epingleRepresentation"),
 		@Mapping(source = "adresses", target = "adressesRepresentation")
 	})

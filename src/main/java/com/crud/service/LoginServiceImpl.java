@@ -1,6 +1,8 @@
 package com.crud.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,12 +13,21 @@ import com.crud.command.LoginCommand;
 import com.crud.mapper.ILoginMapper;
 import com.crud.model.Connexion;
 import com.crud.model.Login;
+import com.crud.model.Personne;
 import com.crud.repository.ILoginRepository;
+import com.crud.repository.IPersonneRepository;
 import com.crud.representation.LoginRepresentation;
 
 
 @Service
 public class LoginServiceImpl implements ILoginService {
+	
+	@Autowired
+	IPersonneRepository iPersonneRepository ;
+	
+	
+	@Autowired
+	IPersonneService iPersonneService ;
 	
 	
 	@Autowired
@@ -42,11 +53,17 @@ public class LoginServiceImpl implements ILoginService {
 		Login login =iLoginMapper.convertCommandToEntity(loginCommand);
 		Connexion connexion = login.getConnexion();
 		connexion.setLogin(login);
-		return iLoginRepository.save(login);
+		iLoginRepository.save(login);
+		return login ;
 	}
 	
 	@Override
 	public void supprimerLogin(int id ){
+		Connexion connexion = iLoginRepository.findById(id).getConnexion();
+		List<Personne> personnes = iPersonneRepository.findAllByConnexionId(connexion.getId());
+		for (Personne personne : personnes) {
+			iPersonneService.deletePersonne(personne.getId());
+		}
 		iLoginRepository.deleteById(id);
 	}
 	

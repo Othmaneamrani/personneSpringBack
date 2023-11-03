@@ -36,9 +36,6 @@ public class Connexion {
 	
 	private String password;
 	
-	@OneToMany(mappedBy = "connexion", cascade = CascadeType.ALL )
-	private List<Personne> personnes;
-	
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "login_id")

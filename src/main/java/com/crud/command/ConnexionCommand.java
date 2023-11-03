@@ -14,9 +14,7 @@ import lombok.Setter;
 public class ConnexionCommand {
 	
 	private int idCommand ;
-	
-	private List<PersonneCommand> personnesCommand;
-	
+		
 	private String usernameCommand ;
 	
 	private String passwordCommand ; 

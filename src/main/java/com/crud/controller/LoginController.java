@@ -57,18 +57,24 @@ public class LoginController {
 	
 	
 	 @PostMapping("/signup")
-	    public String signUp(@RequestBody LoginCommand loginCommand) {
+	    public Login signUp(@RequestBody LoginCommand loginCommand) {
 		  List <Login> logins = iLoginRepository.findAll();
 	    	for(Login login : logins) {
-	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) 
-	            return "name";
-	        if (login.getGmail().equals(loginCommand.getGmailCommand())) 
-	            return "gmail";
-	        if (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6)
-	            return "mdp";
+	        if (login.getConnexion().getUsername().equals(loginCommand.getConnexionCommand().getUsernameCommand())) {
+	        	login.setGmail("username");
+	            return login;
+	        }
+	        if (login.getGmail().equals(loginCommand.getGmailCommand())) {
+	        	login.setGmail("gmail");
+	            return login;
+	        }
+	        if (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6) {
+	        	login.setGmail("mdp");
+	        	return login;
+	        }
 	    	}
-	    	iLoginService.createLogin(loginCommand);
-	    	return loginCommand.getConnexionCommand().getUsernameCommand();
+	    	Login login = iLoginService.createLogin(loginCommand);
+	    	return login;
 	    }
 	
 	 

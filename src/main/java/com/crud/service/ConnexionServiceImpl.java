@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.crud.command.ConnexionCommand;
 import com.crud.mapper.IConnexionMapper;
-import com.crud.model.Adresse;
 import com.crud.model.Connexion;
+import com.crud.model.Personne;
 import com.crud.repository.IConnexionRepository;
+import com.crud.repository.IPersonneRepository;
 import com.crud.representation.ConnexionRepresentation;
 
 @Service
@@ -20,6 +21,13 @@ public class ConnexionServiceImpl implements IConnexionService {
 
 	@Autowired
 	IConnexionRepository iConnexionRepository ;
+	
+	@Autowired
+	IPersonneRepository iPersonneRepository ;
+	
+	
+	@Autowired
+	IPersonneService iPersonneService ;
 	
 	@Autowired
 	IConnexionMapper iConnexionMapper ;
@@ -49,9 +57,12 @@ public class ConnexionServiceImpl implements IConnexionService {
 
 
 	@Override
-	public void deleteConnexion(int id) {
-		iConnexionRepository.deleteById(id);
+	public void viderConnexion(int id) {
 		
+		List<Personne> personnes = iPersonneRepository.findAllByConnexionId(id);
+		for (Personne personne : personnes) {
+			iPersonneService.deletePersonne(personne.getId());
+		}		
 	}
 
 

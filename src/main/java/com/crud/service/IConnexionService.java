@@ -13,7 +13,7 @@ public interface IConnexionService {
 	
  	public Page<ConnexionRepresentation> getAllConnexions(int page,int size, String columnSort);
 
-	public void deleteConnexion(int id);
+	public void viderConnexion(int id);
 	
 	public Connexion createConnexion (ConnexionCommand connexionCommand);
 }

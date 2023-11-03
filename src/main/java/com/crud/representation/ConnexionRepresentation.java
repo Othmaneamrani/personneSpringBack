@@ -15,15 +15,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ConnexionRepresentation {
 	
-	@JsonIgnore
+	
 	private int idRepresentation;
 	
 	private String usernameRepresentation ;
 	
-	private String passwordRepresentation ;
-	
-	private List<PersonneRepresentation> personnesRepresentation;
-	
+	private String passwordRepresentation ;	
 	
 	
 }

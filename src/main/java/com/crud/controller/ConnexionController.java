@@ -55,9 +55,9 @@ public class ConnexionController {
 	
 	
 	
-	  @DeleteMapping("/supprimer/{id}")
+	  @DeleteMapping("/vider/{id}")
 	    public void deleteConnexion(@PathVariable int id) {
-	    	iConnexionService.deleteConnexion(id);
+	    	iConnexionService.viderConnexion(id);
 	    }
 	
 	  

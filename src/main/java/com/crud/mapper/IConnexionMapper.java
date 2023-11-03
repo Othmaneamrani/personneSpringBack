@@ -16,7 +16,6 @@ public interface IConnexionMapper {
 		@Mapping(source="idCommand" , target ="id"),
 		@Mapping(source="usernameCommand" , target ="username"),
 		@Mapping(source="passwordCommand" , target ="password"),
-		@Mapping(source="personnesCommand" , target ="personnes")
 	})
 	Connexion convertCommandToEntity (ConnexionCommand connexionCommand);
 	
@@ -29,7 +28,6 @@ public interface IConnexionMapper {
 		@Mapping(source="id" , target ="idRepresentation"),
 		@Mapping(source="username" , target ="usernameRepresentation"),
 		@Mapping(source="password" , target ="passwordRepresentation"),
-		@Mapping(source="personnes" , target ="personnesRepresentation")
 	})
 	ConnexionRepresentation convertEntityToRepresentation (Connexion connexion);
 	

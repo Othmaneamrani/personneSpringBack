@@ -100,7 +100,6 @@ public class PersonneServiceImpl implements IPersonneService {
 	@Override
 	public String createPersonne(PersonneCommand personneCommand) {
 		Personne personne = iPersonneMapper.convertCommandToEntity(personneCommand);
-		
 		if(personneCommand.getConnexionCommand().getIdCommand() != 0) {
 			personne.setConnexion(iConnexionRepository.findById(personneCommand.getConnexionCommand().getIdCommand()).get());
 		}
@@ -138,9 +137,7 @@ public class PersonneServiceImpl implements IPersonneService {
 	@Override
 	public Personne updatePersonne(PersonneCommand personneCommand) {
 		Personne personne = iPersonneMapper.convertCommandToEntity(personneCommand);    
-		if(personneCommand.getConnexionCommand().getIdCommand() != 0) {
-			personne.setConnexion(iConnexionRepository.findById(personneCommand.getConnexionCommand().getIdCommand()).get());
-		}
+		
 		for(Adresse adresse : personne.getAdresses()) {
 			adresse.setPersonne(personne);
 		}
