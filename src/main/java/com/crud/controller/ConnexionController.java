@@ -1,8 +1,5 @@
 package com.crud.controller;
 
-import java.util.List;
-
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.command.ConnexionCommand;
+import com.crud.command.PasswordCommand;
 import com.crud.model.Connexion;
-import com.crud.repository.IConnexionRepository;
 import com.crud.representation.ConnexionRepresentation;
 import com.crud.service.IConnexionService;
 
@@ -31,18 +28,11 @@ public class ConnexionController {
 	@Autowired
 	private IConnexionService iConnexionService ;
 	
-	@Autowired
-	private IConnexionRepository  iConnexionRepository ;
 	
 	
 	@PostMapping("/connexion")
 	public Connexion checkConnexion (@RequestBody ConnexionCommand connexionCommand) {
-		 List <Connexion> connexions = iConnexionRepository.findAll();
-	    	for(Connexion connexion : connexions) {
-	        if (connexion.getUsername().equals(connexionCommand.getUsernameCommand()) &&   BCrypt.checkpw(connexionCommand.getPasswordCommand(), connexion.getPassword()) )  
-	            return connexion;
-	    	}
-	    return null;
+		return iConnexionService.checkConnexion(connexionCommand);
 	}
 	
 	
@@ -75,7 +65,7 @@ public class ConnexionController {
 	  
 	  
 	  @PatchMapping("/password/{id}")
-	  public Connexion changePassword(@PathVariable int id ,@RequestBody String passwordCommand ) {
+	  public String changePassword(@PathVariable int id ,@RequestBody PasswordCommand passwordCommand) {
 		  return iConnexionService.changePassword(id, passwordCommand); 
 	  }
 	  

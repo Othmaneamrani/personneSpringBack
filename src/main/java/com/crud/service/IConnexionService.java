@@ -3,6 +3,7 @@ package com.crud.service;
 import org.springframework.data.domain.Page;
 
 import com.crud.command.ConnexionCommand;
+import com.crud.command.PasswordCommand;
 import com.crud.model.Connexion;
 import com.crud.representation.ConnexionRepresentation;
 
@@ -19,6 +20,6 @@ public interface IConnexionService {
 	
 	public String changeUsername (int id , String usernameCommand);
 	
-	public Connexion changePassword (int id , String passwordCommand);
+	public String changePassword (int id , PasswordCommand passwordCommand );
 
 }

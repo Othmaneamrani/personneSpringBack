@@ -2,6 +2,7 @@ package com.crud.service;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.crud.command.ConnexionCommand;
+import com.crud.command.PasswordCommand;
 import com.crud.mapper.IConnexionMapper;
 import com.crud.model.Connexion;
 import com.crud.model.Personne;
@@ -37,7 +39,7 @@ public class ConnexionServiceImpl implements IConnexionService {
 	public Connexion checkConnexion(ConnexionCommand connexionCommand) {
 		List <Connexion> connexions = iConnexionRepository.findAll();
     	for(Connexion connexion : connexions) {
-        if (connexion.getUsername().equals(connexionCommand.getUsernameCommand()) && connexion.getPassword().equals(connexionCommand.getPasswordCommand())) 
+        if (connexion.getUsername().equals(connexionCommand.getUsernameCommand()) &&  BCrypt.checkpw(connexionCommand.getPasswordCommand(), connexion.getPassword()) )
             return connexion;
     	}
     	return null;
@@ -94,14 +96,20 @@ public class ConnexionServiceImpl implements IConnexionService {
 	
 	
 	@Override
-	public Connexion changePassword( int id ,String passwordCommand) {
-        if (passwordCommand.matches(".*\\d.*") && passwordCommand.matches(".*[A-Z].*") && passwordCommand.length() > 6) {
+	public String changePassword( int id ,PasswordCommand passwordCommand) {
 		Connexion connexion = iConnexionRepository.findById(id).get();
-		connexion.setPassword(passwordCommand);
-		iConnexionRepository.save(connexion);
-		return connexion;
+
+        if(!BCrypt.checkpw(passwordCommand.getPasswordCommand(), connexion.getPassword())) {
+        	return "incompatibles";
+        }else if(!passwordCommand.getNewPasswordCommand().matches(".*\\d.*") || !passwordCommand.getNewPasswordCommand().matches(".*[A-Z].*") || passwordCommand.getNewPasswordCommand().length() < 6 ) {
+        	return "faible";
+        }else if(passwordCommand.getNewPasswordCommand().equals(passwordCommand.getPasswordCommand())) {
+        	return "aucun";
+        }else {
+    		connexion.setPassword(passwordCommand.getNewPasswordCommand());
+    		iConnexionRepository.save(connexion);
+    		return "ok";
         }
-       return null;
 	}
 
 }
