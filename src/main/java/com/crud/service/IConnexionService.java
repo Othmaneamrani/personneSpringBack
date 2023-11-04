@@ -16,4 +16,9 @@ public interface IConnexionService {
 	public void viderConnexion(int id);
 	
 	public Connexion createConnexion (ConnexionCommand connexionCommand);
+	
+	public String changeUsername (int id , String usernameCommand);
+	
+	public Connexion changePassword (int id , String passwordCommand);
+
 }

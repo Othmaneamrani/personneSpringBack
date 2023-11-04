@@ -73,4 +73,35 @@ public class ConnexionServiceImpl implements IConnexionService {
 		return iConnexionRepository.save(connexion);
 	}
 
+
+
+	@Override
+	public String changeUsername( int id ,String usernameCommand) {
+		Connexion connexion = iConnexionRepository.findById(id).get();
+		List<Connexion> connexions = iConnexionRepository.findAll();
+		if(connexion.getUsername().equals(usernameCommand)) {
+			return "deja";
+		}
+		for(Connexion con : connexions) {
+			if(con.getUsername().equals(usernameCommand) ) {
+				return "non";
+			}
+		}
+		connexion.setUsername(usernameCommand);
+		iConnexionRepository.save(connexion);
+		return usernameCommand;
+	}
+	
+	
+	@Override
+	public Connexion changePassword( int id ,String passwordCommand) {
+        if (passwordCommand.matches(".*\\d.*") && passwordCommand.matches(".*[A-Z].*") && passwordCommand.length() > 6) {
+		Connexion connexion = iConnexionRepository.findById(id).get();
+		connexion.setPassword(passwordCommand);
+		iConnexionRepository.save(connexion);
+		return connexion;
+        }
+       return null;
+	}
+
 }

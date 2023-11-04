@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,4 +67,17 @@ public class ConnexionController {
 		  return iConnexionService.createConnexion(connexionCommand);
 	  }
 	
+	  
+	  @PatchMapping("/username/{id}")
+	  public String changeUsername(@PathVariable int id ,@RequestBody String usernameCommand ) {
+		  return iConnexionService.changeUsername(id, usernameCommand); 
+	  }
+	  
+	  
+	  @PatchMapping("/password/{id}")
+	  public Connexion changePassword(@PathVariable int id ,@RequestBody String passwordCommand ) {
+		  return iConnexionService.changePassword(id, passwordCommand); 
+	  }
+	  
+	  
 }
