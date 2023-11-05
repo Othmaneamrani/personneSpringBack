@@ -1,5 +1,6 @@
 package com.crud.mapper;
 
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -31,4 +32,6 @@ public interface IConnexionMapper {
 	})
 	ConnexionRepresentation convertEntityToRepresentation (Connexion connexion);
 	
+	
+
 }

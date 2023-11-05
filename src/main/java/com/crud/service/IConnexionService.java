@@ -1,5 +1,7 @@
 package com.crud.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.crud.command.ConnexionCommand;
@@ -21,5 +23,6 @@ public interface IConnexionService {
 	public String changeUsername (int id , String usernameCommand);
 	
 	public String changePassword (int id , PasswordCommand passwordCommand );
+		
 
 }

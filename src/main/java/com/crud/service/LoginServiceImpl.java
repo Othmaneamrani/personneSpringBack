@@ -16,6 +16,7 @@ import com.crud.model.Login;
 import com.crud.model.Personne;
 import com.crud.repository.ILoginRepository;
 import com.crud.repository.IPersonneRepository;
+import com.crud.representation.ConnexionRepresentation;
 import com.crud.representation.LoginRepresentation;
 
 
@@ -90,11 +91,16 @@ public class LoginServiceImpl implements ILoginService {
 			iLoginRepository.save(login);
 		return login;
 	}
+
+	
+
+	@Override
+	public List<LoginRepresentation> getList() {
+		return iLoginMapper.convertListEntityToListRepresentation(iLoginRepository.findAll());
+	}
 	
 	
-	
-	
-    
+
 }
 	
 	
