@@ -79,7 +79,7 @@ public class LoginServiceImpl implements ILoginService {
 	        	login.setGmail("gmail");
 	            return login;
 	        }
-	        if (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6) {
+	        if ( (!loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\d.*") || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[!@#éè\\$%\\^&\\*\\(\\)_\\+\\-=\\[\\]\\{\\};:'\",<>\\./?\\\\|`~].*") ) || !loginCommand.getConnexionCommand().getPasswordCommand().matches(".*[A-Z].*") || loginCommand.getConnexionCommand().getPasswordCommand().length() < 6  || loginCommand.getConnexionCommand().getPasswordCommand().matches(".*\\s.*") ) {
 	        	login.setGmail("mdp");
 	        	return login;
 	        }
