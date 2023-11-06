@@ -40,5 +40,7 @@ public interface IPersonneService {
 	public List<PersonneRepresentation> getList(int id) ;
 	
 	public Page<PersonneRepresentation> getAllPersonnesConnexion(int page, int size, String columnSort, String like, int id);
+	
+	public void deletePersonnes( List<Integer> ids);
 
 }

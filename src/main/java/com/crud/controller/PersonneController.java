@@ -120,4 +120,10 @@ public class PersonneController {
     }
     
 
+    @DeleteMapping("/delete")
+    public void deletePersonnes(@RequestParam  List<Integer> ids) {
+    	iPersonneService.deletePersonnes(ids);
+    }
+    
+    
 }

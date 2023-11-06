@@ -249,6 +249,11 @@ public class PersonneServiceImpl implements IPersonneService {
 	    return personneRepresentationPage;
 	}
 
+	@Override
+	public void deletePersonnes(List<Integer> ids) {
+		iPersonneRepository.deleteAllById(ids);
+	}
+
 
 	
 }
