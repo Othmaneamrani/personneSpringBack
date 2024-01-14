@@ -1,8 +1,5 @@
 package com.crud.command;
 
-import java.util.List;
-
-import com.crud.model.Personne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

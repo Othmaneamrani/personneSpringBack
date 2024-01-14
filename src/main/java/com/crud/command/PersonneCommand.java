@@ -2,8 +2,6 @@ package com.crud.command;
 
 import java.util.List;
 
-import com.crud.model.Connexion;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
